@@ -1,0 +1,50 @@
+{
+  "seriesKey": "featured",
+  "count": 11,
+  "items": [
+    {
+      "slug": "scp-173",
+      "title": "SCP-173 - 雕像 - 最初之作"
+    },
+    {
+      "slug": "scp-096",
+      "title": "SCP-096 - “羞涩”的人"
+    },
+    {
+      "slug": "scp-682",
+      "title": "SCP-682 - 不灭孽蜥"
+    },
+    {
+      "slug": "scp-049",
+      "title": "SCP-049 - 疫医"
+    },
+    {
+      "slug": "scp-087",
+      "title": "SCP-087 - 楼梯间"
+    },
+    {
+      "slug": "scp-999",
+      "title": "SCP-999 - 痒痒怪"
+    },
+    {
+      "slug": "scp-5000",
+      "title": "SCP-5000 - 为什么？"
+    },
+    {
+      "slug": "scp-6000",
+      "title": "SCP-6000 - 毒蛇、恶徒与放逐者之图书馆"
+    },
+    {
+      "slug": "scp-cn-2000",
+      "title": "SCP-CN-2000 - 混沌理论"
+    },
+    {
+      "slug": "scp-cn-1000",
+      "title": "SCP-CN-1000 - 流星之誓"
+    },
+    {
+      "slug": "scp-cn-001",
+      "title": "SCP-CN-001 - 监督者议会提案集"
+    }
+  ]
+}

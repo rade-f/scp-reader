@@ -1,0 +1,15 @@
+{
+  "name": "scp-reader",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "export-data": "cd server && npx tsx export_offline_bundle.ts",
+    "build-client": "cd client && npm run build",
+    "cap-sync": "cd client && npx cap sync android",
+    "package-all": "npm run export-data && npm run build-client && npm run cap-sync"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
