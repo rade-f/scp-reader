@@ -45,14 +45,46 @@ export const ReaderView: React.FC<ReaderViewProps> = ({ slug, onBack }) => {
         }
       }
 
-      // 2. Fallback to bundled offline articles
+      // 2. Fallback to bundled offline articles & dynamic persistent cache
       if (!data) {
         try {
-          const offlineRes = await fetch("./offline_data/articles.json");
-          if (offlineRes.ok) {
-            const articleMap = await offlineRes.json();
-            if (articleMap[slug]) {
-              data = articleMap[slug];
+          const localCache = localStorage.getItem(`scp_doc_${slug}`);
+          if (localCache) {
+            data = JSON.parse(localCache);
+          }
+        } catch {
+          // Ignore local storage error
+        }
+      }
+
+      if (!data) {
+        try {
+          // Try chunked series offline file first (e.g. articles_series-1.json)
+          const numMatch = slug.match(/^scp-(?:cn-)?(\d+)/i);
+          const isCn = slug.includes("-cn-");
+          let sKey = "series-1";
+          if (numMatch) {
+            const num = parseInt(numMatch[1], 10);
+            const idx = Math.floor(num / 1000) + 1;
+            sKey = isCn ? `cn-series-${idx}` : `series-${idx}`;
+          }
+
+          const chunkRes = await fetch(`./offline_data/articles_${sKey}.json`);
+          if (chunkRes.ok) {
+            const chunkMap = await chunkRes.json();
+            if (chunkMap[slug]) {
+              data = chunkMap[slug];
+            }
+          }
+
+          // Fallback to master articles.json
+          if (!data) {
+            const offlineRes = await fetch("./offline_data/articles.json");
+            if (offlineRes.ok) {
+              const articleMap = await offlineRes.json();
+              if (articleMap[slug]) {
+                data = articleMap[slug];
+              }
             }
           }
         } catch {
@@ -62,6 +94,13 @@ export const ReaderView: React.FC<ReaderViewProps> = ({ slug, onBack }) => {
 
       if (!data) {
         throw new Error("档案未缓存且未连接到后端服务，请联网或搜索其他收录文档");
+      }
+
+      // Persist to local storage for permanent offline availability
+      try {
+        localStorage.setItem(`scp_doc_${slug}`, JSON.stringify(data));
+      } catch {
+        // Ignore quota limits
       }
 
       setDoc(data);

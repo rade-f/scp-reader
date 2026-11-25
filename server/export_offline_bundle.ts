@@ -72,9 +72,10 @@ console.log(`[Export] Exported ${totalCatalogCount} catalog entries across ${ser
 // 2. Export Cached Articles
 const articles = db.prepare(`SELECT * FROM articles`).all() as any[];
 const articleMap: Record<string, any> = {};
+const seriesArticleMaps: Record<string, Record<string, any>> = {};
 
 for (const a of articles) {
-    articleMap[a.slug] = {
+    const item = {
         slug: a.slug,
         title: a.title,
         series: a.series,
@@ -85,15 +86,43 @@ for (const a of articles) {
         tags: a.tags_json ? JSON.parse(a.tags_json) : [],
         raw_en_content: a.raw_en_content
     };
+
+    articleMap[a.slug] = item;
+
+    const sKey = a.series || "other";
+    if (!seriesArticleMaps[sKey]) {
+        seriesArticleMaps[sKey] = {};
+    }
+    seriesArticleMaps[sKey][a.slug] = item;
 }
 
+// Write master articles.json
 fs.writeFileSync(
     path.join(OUTPUT_DIR, "articles.json"),
     JSON.stringify(articleMap),
     "utf-8"
 );
 
-console.log(`[Export] Exported ${articles.length} cached full-text articles into offline_data/articles.json.`);
+// Write per-series articles chunk files
+for (const [sKey, map] of Object.entries(seriesArticleMaps)) {
+    fs.writeFileSync(
+        path.join(OUTPUT_DIR, `articles_${sKey}.json`),
+        JSON.stringify(map),
+        "utf-8"
+    );
+}
+
+// Also sync to client/dist/offline_data if dist exists
+const DIST_DIR = path.join(__dirname, "../client/dist/offline_data");
+if (fs.existsSync(path.dirname(DIST_DIR))) {
+    fs.mkdirSync(DIST_DIR, { recursive: true });
+    for (const file of fs.readdirSync(OUTPUT_DIR)) {
+        fs.copyFileSync(path.join(OUTPUT_DIR, file), path.join(DIST_DIR, file));
+    }
+    console.log(`[Export] Synced offline data files to client/dist/offline_data/`);
+}
+
+console.log(`[Export] Exported ${articles.length} cached full-text articles into offline bundles.`);
 
 // 3. Export Manifest
 const manifest = {

@@ -186,6 +186,9 @@ class DB {
     public getHistory(limit = 30): UserHistory[] {
         return this.db.prepare("SELECT * FROM user_history ORDER BY last_read_at DESC LIMIT ?").all(limit) as UserHistory[];
     }
+    public get database(): Database.Database {
+        return this.db;
+    }
 }
 
 export const db = new DB();

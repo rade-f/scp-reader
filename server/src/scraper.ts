@@ -23,22 +23,26 @@ export class WikidotScraper {
         const url = `${domain}/${cleanSlug}`;
 
         try {
-            const resp = await axios.get(url, {
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), 12000);
+
+            const resp = await fetch(url, {
                 headers: HEADERS,
-                timeout: 12000,
-                validateStatus: (status) => status < 500
+                signal: controller.signal
             });
+            clearTimeout(timeoutId);
 
             if (resp.status === 404) {
                 return null;
             }
 
-            if (resp.status !== 200) {
+            if (!resp.ok) {
                 console.warn(`[Scraper] Unexpected status ${resp.status} for ${url}`);
                 return null;
             }
 
-            const $ = cheerio.load(resp.data);
+            const html = await resp.text();
+            const $ = cheerio.load(html);
 
             // Check Wikidot's "Page does not exist yet"
             const pageContentElem = $("#page-content");
