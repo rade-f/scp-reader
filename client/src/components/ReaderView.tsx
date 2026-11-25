@@ -92,8 +92,13 @@ export const ReaderView: React.FC<ReaderViewProps> = ({ slug, onBack }) => {
   // Listen to iframe auto-resize message
   useEffect(() => {
     const handleMessage = (e: MessageEvent) => {
-      if (e.data && e.data.type === "SCP_RESIZE" && e.data.height) {
-        setIframeHeight(Math.max(e.data.height + 40, 600));
+      if (e.data && e.data.type === "SCP_RESIZE" && typeof e.data.height === "number") {
+        const rawHeight = Math.ceil(e.data.height);
+        setIframeHeight((prev) => {
+          // If within 6px difference, do not update to avoid feedback jitter
+          if (Math.abs(prev - rawHeight) < 6) return prev;
+          return Math.max(rawHeight + 16, 400);
+        });
       }
     };
     window.addEventListener("message", handleMessage);
@@ -137,6 +142,9 @@ export const ReaderView: React.FC<ReaderViewProps> = ({ slug, onBack }) => {
   const standaloneHtml = useMemo(() => {
     if (!doc) return "";
     const stylesCombined = (doc.styles || []).join("\n");
+    const isDark = readerTheme === "dark" || readerTheme === "oled";
+    const defaultColor = isDark ? "#f5f5f7" : "#1d1d1f";
+
     return `<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -145,15 +153,18 @@ export const ReaderView: React.FC<ReaderViewProps> = ({ slug, onBack }) => {
     <title>${doc.title}</title>
     ${stylesCombined}
     <style>
-      body {
+      html, body {
+          height: auto !important;
+          min-height: 0 !important;
           margin: 0;
           padding: 0;
           font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", sans-serif;
-          color: #1d1d1f;
+          color: ${defaultColor};
           background-color: transparent;
           line-height: 1.6;
+          overflow-y: hidden;
       }
-      #page-content { padding: 8px 0; overflow-x: hidden; }
+      #page-content { padding: 8px 0; overflow-x: hidden; height: auto !important; }
       img { max-width: 100% !important; height: auto !important; }
       .collapsible-block-unfolded { transition: all 0.2s ease-in-out; }
     </style>
@@ -164,6 +175,18 @@ export const ReaderView: React.FC<ReaderViewProps> = ({ slug, onBack }) => {
     </div>
     <script>
     document.addEventListener('DOMContentLoaded', function() {
+        var pageContent = document.getElementById('page-content');
+        var lastSentHeight = 0;
+
+        function reportHeight() {
+            if (!pageContent) return;
+            var h = Math.ceil(pageContent.getBoundingClientRect().height || pageContent.scrollHeight);
+            if (h > 0 && Math.abs(h - lastSentHeight) > 4) {
+                lastSentHeight = h;
+                window.parent.postMessage({ type: 'SCP_RESIZE', height: h }, '*');
+            }
+        }
+
         document.querySelectorAll('.collapsible-block').forEach(function(block) {
             var folded = block.querySelector('.collapsible-block-folded');
             var unfolded = block.querySelector('.collapsible-block-unfolded');
@@ -178,22 +201,26 @@ export const ReaderView: React.FC<ReaderViewProps> = ({ slug, onBack }) => {
                         folded.style.display = 'none';
                         unfolded.style.display = 'block';
                     }
+                    setTimeout(reportHeight, 50);
                 });
             });
         });
-        function reportHeight() {
-            var height = document.documentElement.scrollHeight;
-            window.parent.postMessage({ type: 'SCP_RESIZE', height: height }, '*');
+
+        if (window.ResizeObserver && pageContent) {
+            var ro = new ResizeObserver(function() {
+                reportHeight();
+            });
+            ro.observe(pageContent);
         }
+
         window.addEventListener('load', reportHeight);
-        window.addEventListener('resize', reportHeight);
-        setTimeout(reportHeight, 300);
-        setTimeout(reportHeight, 1500);
+        setTimeout(reportHeight, 200);
+        setTimeout(reportHeight, 800);
     });
     </script>
 </body>
 </html>`;
-  }, [doc]);
+  }, [doc, readerTheme]);
 
   // Background style based on readerTheme
   const themeContainerBg = {
