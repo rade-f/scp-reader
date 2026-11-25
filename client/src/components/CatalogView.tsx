@@ -76,36 +76,49 @@ export const CatalogView: React.FC<CatalogViewProps> = ({ seriesKey, onSelectDoc
 
   const currentMeta = seriesMeta[seriesKey] || { title: "收容档案目录", desc: "基金会分级收容文件" };
 
-  // Calculate dynamic range buckets (e.g. 0-99, 100-199...)
+  // Calculate dynamic range buckets based on ACTUAL items present (Prevents OOM on crazy joke numbers like 2128046979)
   const rangeBuckets = useMemo(() => {
     if (items.length <= 30) return [];
-    const buckets: Array<{ id: string; label: string; min: number; max: number }> = [];
 
-    // Find min and max numbers in this series
-    let minNum = Infinity;
-    let maxNum = -Infinity;
+    // Group actual present items by century
+    const centurySet = new Set<number>();
+    let hasSpecialLargeNum = false;
+
     for (const item of items) {
       const match = item.slug.match(/(\d+)/);
       if (match) {
         const val = parseInt(match[1], 10);
-        if (val < minNum) minNum = val;
-        if (val > maxNum) maxNum = val;
+        if (val < 10000) {
+          centurySet.add(Math.floor(val / 100) * 100);
+        } else {
+          hasSpecialLargeNum = true;
+        }
       }
     }
 
-    if (minNum === Infinity) return [];
+    const sortedCenturies = Array.from(centurySet).sort((a, b) => a - b);
+    const buckets: Array<{ id: string; label: string; min: number; max: number }> = [];
 
-    const startCentury = Math.floor(minNum / 100) * 100;
-    const endCentury = Math.floor(maxNum / 100) * 100;
+    // Only render century pills if there are a reasonable amount (<= 15)
+    if (sortedCenturies.length <= 15) {
+      for (const c of sortedCenturies) {
+        const min = c;
+        const max = c + 99;
+        buckets.push({
+          id: `${min}-${max}`,
+          label: `${String(min).padStart(3, "0")}~${String(max).padStart(3, "0")}`,
+          min,
+          max
+        });
+      }
+    }
 
-    for (let c = startCentury; c <= endCentury; c += 100) {
-      const min = c;
-      const max = c + 99;
+    if (hasSpecialLargeNum) {
       buckets.push({
-        id: `${min}-${max}`,
-        label: `${String(min).padStart(3, "0")}~${String(max).padStart(3, "0")}`,
-        min,
-        max
+        id: "special",
+        label: "特殊/万级编号",
+        min: 10000,
+        max: Infinity
       });
     }
 
