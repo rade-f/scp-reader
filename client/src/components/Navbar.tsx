@@ -91,7 +91,10 @@ export const Navbar: React.FC<NavbarProps> = ({
 
   return (
     <>
-      <header className="sticky top-0 z-40 w-full glass-panel border-b border-apple-border dark:border-apple-darkBorder transition-all duration-300">
+      <header
+        className="sticky top-0 z-40 w-full glass-panel border-b border-apple-border dark:border-apple-darkBorder transition-all duration-300"
+        style={{ paddingTop: "var(--sat)" }}
+      >
         {/* Main Bar */}
         <div className="max-w-7xl mx-auto px-3.5 sm:px-6 h-16 flex items-center justify-between gap-2 sm:gap-4">
           {/* Brand */}
@@ -318,7 +321,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             </div>
 
             {/* Series Options Grid/List in Drawer */}
-            <div className="flex-1 overflow-y-auto p-4 space-y-5">
+            <div className="flex-1 overflow-y-auto p-4 space-y-5" style={{ paddingBottom: "calc(2rem + var(--sab))" }}>
               {/* Group 1: 特辑 */}
               <div>
                 <div className="text-[11px] font-bold text-neutral-400 uppercase tracking-wider mb-2 px-1">

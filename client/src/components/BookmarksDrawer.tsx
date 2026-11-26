@@ -38,7 +38,10 @@ export const BookmarksDrawer: React.FC<BookmarksDrawerProps> = ({ isOpen, onClos
 
       <div className="absolute inset-y-0 right-0 max-w-md w-full glass-panel border-l border-apple-border dark:border-apple-darkBorder shadow-2xl flex flex-col z-10">
         {/* Header */}
-        <div className="p-4 sm:p-6 border-b border-apple-border dark:border-apple-darkBorder flex items-center justify-between">
+        <div
+          className="p-4 sm:p-6 border-b border-apple-border dark:border-apple-darkBorder flex items-center justify-between"
+          style={{ paddingTop: "max(1rem, var(--sat))" }}
+        >
           <div className="flex items-center p-1 bg-neutral-200/60 dark:bg-neutral-800/80 rounded-full border border-black/5 dark:border-white/5">
             <button
               onClick={() => setTab("bookmarks")}
@@ -73,7 +76,10 @@ export const BookmarksDrawer: React.FC<BookmarksDrawerProps> = ({ isOpen, onClos
         </div>
 
         {/* Content list */}
-        <div className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-2">
+        <div
+          className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-2"
+          style={{ paddingBottom: "max(1.5rem, var(--sab))" }}
+        >
           {currentList.length === 0 ? (
             <div className="py-20 text-center text-neutral-400 text-sm">
               {tab === "bookmarks" ? "暂无收藏的文档" : "暂无历史浏览记录"}

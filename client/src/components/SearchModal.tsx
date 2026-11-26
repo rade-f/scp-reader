@@ -71,7 +71,10 @@ export const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, onSel
   const num = query.trim();
 
   return (
-    <div className="fixed inset-0 z-50 flex items-start justify-center pt-20 px-4 bg-black/40 backdrop-blur-sm animate-fadeIn">
+    <div
+      className="fixed inset-0 z-50 flex items-start justify-center px-4 bg-black/40 backdrop-blur-sm animate-fadeIn"
+      style={{ paddingTop: "calc(5rem + var(--sat))", paddingBottom: "var(--sab)" }}
+    >
       {/* Background click to dismiss */}
       <div className="absolute inset-0" onClick={onClose} />
 

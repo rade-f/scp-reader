@@ -372,7 +372,10 @@ export const ReaderView: React.FC<ReaderViewProps> = ({ slug, onBack }) => {
       </div>
 
       {/* Apple Floating Dynamic Capsule Toolbar (Bottom Floating) */}
-      <div className="fixed bottom-6 inset-x-0 flex justify-center z-40 px-4 pointer-events-none">
+      <div
+        className="fixed inset-x-0 flex justify-center z-40 px-4 pointer-events-none transition-all duration-200"
+        style={{ bottom: "calc(1.5rem + var(--sab))" }}
+      >
         <div className="glass-pill rounded-full border border-black/10 dark:border-white/15 px-3 py-2 flex items-center gap-1 sm:gap-2 pointer-events-auto shadow-2xl transition-all duration-200">
           {/* Bookmark Button */}
           <button

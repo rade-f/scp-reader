@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { SystemBars, SystemBarsStyle, Capacitor } from "@capacitor/core";
 import { Navbar } from "./components/Navbar";
 import { CatalogView } from "./components/CatalogView";
 import { ReaderView } from "./components/ReaderView";
@@ -17,7 +18,7 @@ export function App() {
     );
   });
 
-  // Sync dark class to <html>
+  // Sync dark class to <html> and native SystemBars
   useEffect(() => {
     if (isDark) {
       document.documentElement.classList.add("dark");
@@ -26,7 +27,52 @@ export function App() {
       document.documentElement.classList.remove("dark");
       localStorage.setItem("scp_theme", "light");
     }
+
+    if (Capacitor.isNativePlatform()) {
+      try {
+        SystemBars.setStyle({
+          style: isDark ? SystemBarsStyle.Dark : SystemBarsStyle.Light
+        });
+      } catch (err) {
+        console.warn("[App] Failed to set native system bars style:", err);
+      }
+    }
   }, [isDark]);
+
+  // Synchronize native Android/iOS safe-area insets
+  useEffect(() => {
+    const syncNativeInsets = () => {
+      const win = window as any;
+      if (win.AndroidSafeArea && typeof win.AndroidSafeArea.getInsets === "function") {
+        try {
+          const raw = win.AndroidSafeArea.getInsets();
+          const insets = JSON.parse(raw);
+          if (typeof insets.top === "number" && insets.top > 0) {
+            document.documentElement.style.setProperty("--safe-area-inset-top", `${insets.top}px`);
+          }
+          if (typeof insets.bottom === "number" && insets.bottom > 0) {
+            document.documentElement.style.setProperty("--safe-area-inset-bottom", `${insets.bottom}px`);
+          }
+          if (typeof insets.left === "number" && insets.left > 0) {
+            document.documentElement.style.setProperty("--safe-area-inset-left", `${insets.left}px`);
+          }
+          if (typeof insets.right === "number" && insets.right > 0) {
+            document.documentElement.style.setProperty("--safe-area-inset-right", `${insets.right}px`);
+          }
+        } catch (e) {
+          console.warn("[App] Failed to parse AndroidSafeArea insets:", e);
+        }
+      }
+    };
+
+    syncNativeInsets();
+    const t1 = setTimeout(syncNativeInsets, 300);
+    const t2 = setTimeout(syncNativeInsets, 1000);
+    return () => {
+      clearTimeout(t1);
+      clearTimeout(t2);
+    };
+  }, []);
 
   // Handle URL hash changes (#/read/scp-173)
   useEffect(() => {
@@ -71,7 +117,7 @@ export function App() {
       />
 
       {/* Main View Area */}
-      <main className="flex-1">
+      <main className="flex-1" style={{ paddingBottom: "var(--sab)" }}>
         {activeSlug ? (
           <ReaderView
             slug={activeSlug}
