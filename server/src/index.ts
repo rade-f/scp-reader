@@ -103,10 +103,12 @@ app.get("/api/documents/:slug", async (request, reply) => {
         if (!doc) {
             return reply.status(404).send({ error: "Document not found" });
         }
+        const relations = db.getDocumentRelations(slug);
         return {
             ...doc,
             styles: JSON.parse(doc.styles_json),
-            tags: doc.tags_json ? JSON.parse(doc.tags_json) : []
+            tags: doc.tags_json ? JSON.parse(doc.tags_json) : [],
+            relations
         };
     } catch (err: any) {
         request.log.error(err);
@@ -190,11 +192,27 @@ app.get("/api/user/history", async () => {
     return db.getHistory();
 });
 
+// 7. Relations Graph API
+app.get("/api/documents/:slug/relations", async (request, reply) => {
+    const { slug } = request.params as { slug: string };
+    const relations = db.getDocumentRelations(slug);
+    return relations;
+});
+
+app.post("/api/relations/rebuild", async () => {
+    const total = db.buildAllRelations();
+    return { success: true, total_relations: total };
+});
+
 // Start Server
 const start = async () => {
     try {
         await app.listen({ port: CONFIG.PORT, host: "0.0.0.0" });
         console.log(`🚀 SCP-Reader Server running on http://localhost:${CONFIG.PORT}`);
+        // Initialize relation graph in background
+        setTimeout(() => {
+            db.buildAllRelations();
+        }, 100);
     } catch (err) {
         app.log.error(err);
         process.exit(1);

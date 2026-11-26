@@ -1,0 +1,696 @@
+{
+  "scp-003": {
+    "references": [
+      {
+        "slug": "scp-1512",
+        "title": "SCP-1512 - 无理根",
+        "mention_count": 1,
+        "snippet": "...P-003-1的生物学一直是广泛研究的课题。已经确定SCP-███、 SCP-1512 和 SCP-2756 的类似重要元素，后两者没有与SCP-003-1的进一步关联，未知两..."
+      },
+      {
+        "slug": "scp-2756",
+        "title": "SCP-2756 - 离奇的园林",
+        "mention_count": 1,
+        "snippet": "...一直是广泛研究的课题。已经确定SCP-███、 SCP-1512 和 SCP-2756 的类似重要元素，后两者没有与SCP-003-1的进一步关联，未知两者间的关联，且没有完全..."
+      }
+    ],
+    "referenced_by": []
+  },
+  "scp-006": {
+    "references": [],
+    "referenced_by": [
+      {
+        "slug": "scp-018",
+        "title": "SCP-018 - 弹力球",
+        "mention_count": 1,
+        "snippet": "...█████████，别担心，都搞定了。我有个主意，如果能让我用一用从 SCP-006 打来的水、SCP-███甚至SCP-███的话，我就送你一套SCP-A5装甲外带一名特工..."
+      }
+    ]
+  },
+  "scp-008": {
+    "references": [
+      {
+        "slug": "scp-500",
+        "title": "SCP-500 - 万能药",
+        "mention_count": 1,
+        "snippet": "...SCP-008在俄罗斯的保管状况是未知的。 附录008-1： SCP-500 被发现即使在该病的晚期阶段仍能彻底治愈SCP-008。..."
+      }
+    ],
+    "referenced_by": [
+      {
+        "slug": "scp-cn-1000",
+        "title": "SCP-CN-1000 - 2300",
+        "mention_count": 2,
+        "snippet": "...信息 配图来源： SCP-914 ， SCP-008 ， unsplash 格式来源： SCP格式资源 ，tab格式修改自 芝加哥鬼..."
+      },
+      {
+        "slug": "scp-5000",
+        "title": "SCP-5000 - 为什么？",
+        "mention_count": 1,
+        "snippet": "...SCP-4290 通过利用SCP-914强化过的SCP-008样品，基金会复活了SCP-4290的尸体并将其释放。蛇之手的驭兽术士与其进行了交战，但是文..."
+      }
+    ]
+  },
+  "scp-009": {
+    "references": [
+      {
+        "slug": "scp-107",
+        "title": "SCP-107 - 空龟壳",
+        "mention_count": 2,
+        "snippet": "...录回收自 SCP-507 一次偶发转移到的一个宇宙，其中所述实验使用 SCP-107 进行。该报告发现对我们宇宙的适用性正待检阅。 输入： 10mL的SCP-009..."
+      },
+      {
+        "slug": "scp-3023",
+        "title": "SCP-3023 - 它决定当一只愤怒的蜘蛛",
+        "mention_count": 1,
+        "snippet": "...实例检索后，证实由MTF-B7寻获的蛛状实体（见 附件 ）确实为先前 SCP-3023 的未知实体。调查已揭露实体起源于由于[数据删除]而导致的[已编辑]。 附录： 12..."
+      },
+      {
+        "slug": "scp-507",
+        "title": "SCP-507 - 不情愿的位面跳跃者",
+        "mention_count": 1,
+        "snippet": "...sp;关闭报告&nbsp;&nbsp; 以下实验记录回收自 SCP-507 一次偶发转移到的一个宇宙，其中所述实验使用 SCP-107 进行。该报告发现对我们宇宙的..."
+      }
+    ],
+    "referenced_by": []
+  },
+  "scp-016": {
+    "references": [
+      {
+        "slug": "scp-1801",
+        "title": "SCP-1801 - 合体病",
+        "mention_count": 1,
+        "snippet": "...的传染性并刺激身体产生更多器官这一点上具有共通之处，目前正在调查其与 SCP-1801 可能的联系。 ‡&nbsp;隐藏授权&nbsp;/&nbsp;..."
+      }
+    ],
+    "referenced_by": []
+  },
+  "scp-018": {
+    "references": [
+      {
+        "slug": "scp-006",
+        "title": "SCP-006 - 不老泉",
+        "mention_count": 1,
+        "snippet": "...█████████，别担心，都搞定了。我有个主意，如果能让我用一用从 SCP-006 打来的水、SCP-███甚至SCP-███的话，我就送你一套SCP-A5装甲外带一名特工..."
+      }
+    ],
+    "referenced_by": [
+      {
+        "slug": "scp-cn-018",
+        "title": "SCP-CN-018 - 旅船",
+        "mention_count": 1,
+        "snippet": "...时也听到了某一个体（事后被确认为Dr.盘█）一直重复使用脏话发泄情绪。SCP-018-1个体在Site-CN-21女性浴室中巡航██分钟后消失在视野里面，期间共造成17处结构..."
+      }
+    ]
+  },
+  "scp-023": {
+    "references": [
+      {
+        "slug": "scp-1111",
+        "title": "SCP-1111 - 白犬",
+        "mention_count": 2,
+        "snippet": "...正在評估升至Keter的請求。 附錄023-004： SCP-1111-1 和SCP-023可能是同一現象的兩個變體，因为它們被發現具有幾個相同的特性：对地理位..."
+      }
+    ],
+    "referenced_by": []
+  },
+  "scp-025": {
+    "references": [
+      {
+        "slug": "scp-173",
+        "title": "SCP-173 - 雕像 - 最初之作",
+        "mention_count": 1,
+        "snippet": "...个完全独立的设施前进。对象没有其他人员陪同，也没有依照安全程序便进入 SCP-173 的收容设施，在听到关门声后眨了眨眼睛。死因为气管压碎导致的窒息。 对象： D-80..."
+      }
+    ],
+    "referenced_by": []
+  },
+  "scp-027": {
+    "references": [
+      {
+        "slug": "scp-1772",
+        "title": "SCP-1772 - “蛋”过敏",
+        "mention_count": 1,
+        "snippet": "...这采访不久之后，Jameson博士跟其他原SCP-027研究员被调往 SCP-1772 项目。 ‡&nbsp;隐藏授权&nbsp;/&nbsp;引用..."
+      }
+    ],
+    "referenced_by": []
+  },
+  "scp-028": {
+    "references": [
+      {
+        "slug": "scp-1995",
+        "title": "SCP-1995 - 无限恶魔机",
+        "mention_count": 1,
+        "snippet": "...-028之后，新闻报道被管制，对象被收容起来，而反应堆的设计被应用于 SCP-1995 的收容中。随后对于SCP-028的实验导致了不同结果。 文档#EL-028-111..."
+      },
+      {
+        "slug": "scp-2669",
+        "title": "SCP-2669 - 职业性畸变",
+        "mention_count": 1,
+        "snippet": "...███有了基金会活动和数个他此前未暴露过的SCP项目的广泛知识，包括 SCP-2669 。 任何被发现进入SCP-028影响区域的基金会人员将被无限期拘留。 文档#E..."
+      }
+    ],
+    "referenced_by": []
+  },
+  "scp-029": {
+    "references": [
+      {
+        "slug": "scp-2820",
+        "title": "SCP-2820 - 遍入天咒",
+        "mention_count": 1,
+        "snippet": "...了。同时也在此次事件后，SCP-029开始积极的试图逃跑。已提议使用 SCP-2820 来无效化项目作为一种可能的、应对状况恶化的方式。 脚注 1 . 译注：..."
+      }
+    ],
+    "referenced_by": []
+  },
+  "scp-049": {
+    "references": [],
+    "referenced_by": [
+      {
+        "slug": "scp-049-j",
+        "title": "SCP-049-J - 瘟疫二逼",
+        "mention_count": 30,
+        "snippet": "...露出一副鸟样的SCP-049-J 特殊收容措施： SCP-049-J收容于 Site-19 Site..."
+      }
+    ]
+  },
+  "scp-049-j": {
+    "references": [
+      {
+        "slug": "scp-049",
+        "title": "SCP-049 - 疫医",
+        "mention_count": 30,
+        "snippet": "...露出一副鸟样的SCP-049-J 特殊收容措施： SCP-049-J收容于 Site-19 Site..."
+      }
+    ],
+    "referenced_by": []
+  },
+  "scp-073": {
+    "references": [
+      {
+        "slug": "scp-076",
+        "title": "SCP-076 - “亚伯”",
+        "mention_count": 3,
+        "snippet": "...同意并宣誓在自身方面会履行保密义务。 附录073-3： 当关于 SCP-076 的信息被带给SCP-073以进行“备份”时，对象显示出对该信息的熟悉，但是对象拒绝添加该..."
+      },
+      {
+        "slug": "scp-1216",
+        "title": "SCP-1216 - 锥形怪",
+        "mention_count": 1,
+        "snippet": "...示此金属材料被多种异常文化和实体所使用。特别值得注意的是，铍青铜也是 SCP-1216 、 SCP-1427 、 SCP-2481 和 SCP-2711 的组成成分之一。鉴于这..."
+      },
+      {
+        "slug": "scp-1427",
+        "title": "SCP-1427 - 意識湮滅銅碑",
+        "mention_count": 1,
+        "snippet": "...文化和实体所使用。特别值得注意的是，铍青铜也是 SCP-1216 、 SCP-1427 、 SCP-2481 和 SCP-2711 的组成成分之一。鉴于这一发现，基金会开始尝试..."
+      },
+      {
+        "slug": "scp-2481",
+        "title": "SCP-2481 - 射日",
+        "mention_count": 1,
+        "snippet": "...值得注意的是，铍青铜也是 SCP-1216 、 SCP-1427 、 SCP-2481 和 SCP-2711 的组成成分之一。鉴于这一发现，基金会开始尝试调查铍青铜的起源，以及..."
+      },
+      {
+        "slug": "scp-2711",
+        "title": "SCP-2711 - 定海神针 如意金箍棒",
+        "mention_count": 1,
+        "snippet": "...是 SCP-1216 、 SCP-1427 、 SCP-2481 和 SCP-2711 的组成成分之一。鉴于这一发现，基金会开始尝试调查铍青铜的起源，以及它是如何开始传遍全世界..."
+      }
+    ],
+    "referenced_by": []
+  },
+  "scp-076": {
+    "references": [],
+    "referenced_by": [
+      {
+        "slug": "scp-073",
+        "title": "SCP-073 - “该隐”",
+        "mention_count": 3,
+        "snippet": "...同意并宣誓在自身方面会履行保密义务。 附录073-3： 当关于 SCP-076 的信息被带给SCP-073以进行“备份”时，对象显示出对该信息的熟悉，但是对象拒绝添加该..."
+      }
+    ]
+  },
+  "scp-096": {
+    "references": [],
+    "referenced_by": [
+      {
+        "slug": "scp-5000",
+        "title": "SCP-5000 - 为什么？",
+        "mention_count": 2,
+        "snippet": "...生的事。 相关异常 基金会采取的行动 SCP-096 SCP-096 的脸部照片流传到了社交媒体平台上。在照片被撤下之前已造成了上百人的..."
+      }
+    ]
+  },
+  "scp-1000": {
+    "references": [
+      {
+        "slug": "scp-2273",
+        "title": "SCP-2273 - 红军第22装甲步兵师少校 Alexei Belitrov",
+        "mention_count": 1,
+        "snippet": "...CP-1000存在已知关联的异常物品在循环迭代前[数据删除] 例如， SCP-2273 可能并非来自某一平行时间线，而是来自前一次“迭代”。在 SCP-2932 、 SCP-2..."
+      },
+      {
+        "slug": "scp-2511",
+        "title": "SCP-2511 - 河童的种群分布：在蒙古比其他地方更多",
+        "mention_count": 1,
+        "snippet": "...来自某一平行时间线，而是来自前一次“迭代”。在 SCP-2932 、 SCP-2511 以及其它了解SCP-1000（或其变体）的现存文化信息源中，全都呈现有“一致的不一致”，..."
+      },
+      {
+        "slug": "scp-2932",
+        "title": "SCP-2932 - 缇坦妮雅之牢",
+        "mention_count": 1,
+        "snippet": "...P-2273 可能并非来自某一平行时间线，而是来自前一次“迭代”。在 SCP-2932 、 SCP-2511 以及其它了解SCP-1000（或其变体）的现存文化信息源中，全都呈..."
+      }
+    ],
+    "referenced_by": []
+  },
+  "scp-106": {
+    "references": [],
+    "referenced_by": [
+      {
+        "slug": "scp-666-and-a-half-j",
+        "title": "SCP-666½-J - 地狱烈焰",
+        "mention_count": 1,
+        "snippet": "...手部紧抓马桶导致的轻微擦伤。 大约15-20分钟后个体肠道经历和 SCP-106 同等级的收容状况（包括多得多的尖叫），个体经历短暂的RK级狂欢场景，感受到下部肌肉的松弛..."
+      }
+    ]
+  },
+  "scp-173": {
+    "references": [],
+    "referenced_by": [
+      {
+        "slug": "scp-025",
+        "title": "SCP-025 - 旧衣橱",
+        "mention_count": 1,
+        "snippet": "...个完全独立的设施前进。对象没有其他人员陪同，也没有依照安全程序便进入 SCP-173 的收容设施，在听到关门声后眨了眨眼睛。死因为气管压碎导致的窒息。 对象： D-80..."
+      },
+      {
+        "slug": "scp-cn-1000",
+        "title": "SCP-CN-1000 - 2300",
+        "mention_count": 1,
+        "snippet": "...skip打过交道。而上面的SAP列表中有不少熟面孔。SAP-001对应SCP-173，SAP-090对应SCP-008，069对应914。另外注意一下，文档的背景除了基金会，..."
+      }
+    ]
+  },
+  "scp-2000": {
+    "references": [],
+    "referenced_by": [
+      {
+        "slug": "scp-5000",
+        "title": "SCP-5000 - 为什么？",
+        "mention_count": 2,
+        "snippet": "...比较好。 相关异常 基金会采取的行动 SCP-2000 基金会故意引发黄石火山的爆发，以此摧毁SCP-2000。就目前而言，由玛娜慈善基金..."
+      }
+    ]
+  },
+  "scp-3008": {
+    "references": [
+      {
+        "slug": "scp-3088",
+        "title": "SCP-3088 - 当地法律",
+        "mention_count": 1,
+        "snippet": "...作者： Mortos 我的一些其他文章： SCP-3088 - 一个法律成为现实的城镇。 SCP-3688 - 舞蹈，以及从中获得的超能力。..."
+      },
+      {
+        "slug": "scp-3688",
+        "title": "SCP-3688 - 随心热舞",
+        "mention_count": 1,
+        "snippet": "...他文章： SCP-3088 - 一个法律成为现实的城镇。 SCP-3688 - 舞蹈，以及从中获得的超能力。 SCP-4144 - 你以为那是你吃的 早餐..."
+      },
+      {
+        "slug": "scp-4144",
+        "title": "SCP-4144 - 早吃好",
+        "mention_count": 1,
+        "snippet": "...城镇。 SCP-3688 - 舞蹈，以及从中获得的超能力。 SCP-4144 - 你以为那是你吃的 早餐 吗？ SCP-4533 - 这是资本家想要的未来。...."
+      },
+      {
+        "slug": "scp-4533",
+        "title": "SCP-4533 - 条款和条件应得适用",
+        "mention_count": 1,
+        "snippet": "...能力。 SCP-4144 - 你以为那是你吃的 早餐 吗？ SCP-4533 - 这是资本家想要的未来。. 你可以在 这里 找到更多我的东西！..."
+      }
+    ],
+    "referenced_by": []
+  },
+  "scp-5000": {
+    "references": [
+      {
+        "slug": "scp-579",
+        "title": "SCP-579 - [数据删除]",
+        "mention_count": 7,
+        "snippet": "...-5000 在 2020/04/12 首次随 Site-62C 内 SCP-579 收容室的一道闪光而出现，内含有一具从遗传学上鉴定为基金会员工 Pietro Wilso..."
+      },
+      {
+        "slug": "scp-2200",
+        "title": "SCP-2200 - 魂山",
+        "mention_count": 6,
+        "snippet": "...缓了对环境的影响，但我们被火山灰呛死只是迟早的事而已。 SCP-2200 不知为何，基金会似乎有大批量生产SCP-2200-1，而这些剑正落入难民的手中。由..."
+      },
+      {
+        "slug": "scp-610",
+        "title": "SCP-610 - 憎恨之血肉",
+        "mention_count": 4,
+        "snippet": "...，随后迅速消失。我不知道为什么第二天这一行动就停止了。 SCP-610 潜匿在多个包括纽约与德里在内的主要城市的基金会特工散布了 SCP-610 的样品。..."
+      },
+      {
+        "slug": "scp-1290",
+        "title": "SCP-1290 - 不完美传送机",
+        "mention_count": 3,
+        "snippet": "...远处还有一只巨大的红色泰迪熊，在摩天大楼旁边走来走去。 SCP-1290 SCP-1290-1 与 SCP-1290-2 已从其原始位置移走并用作原始弹射系..."
+      },
+      {
+        "slug": "scp-1440",
+        "title": "SCP-1440 - 不知来处的老人",
+        "mention_count": 3,
+        "snippet": "...不如直接发射导弹呢，但是没人问我，因为他们全都疯掉了。 SCP-1440 SCP-1440被机动特遣队Nu-22（“火箭侠”）在难民营之间运送，而其异常性质..."
+      },
+      {
+        "slug": "scp-1678",
+        "title": "SCP-1678 - 镜像伦敦",
+        "mention_count": 3,
+        "snippet": "...P-1440实际上对分配给它的基金会人员没有影响一样。 SCP-1678 基金会故意放弃收容SCP-1678，将人员从邻近地区撤离。一旦有其它异常造成混乱，..."
+      },
+      {
+        "slug": "scp-2241",
+        "title": "SCP-2241 - 十字军Cameron",
+        "mention_count": 3,
+        "snippet": "...200-4被埋在堆成山的死尸SCP-2200-4之下。 SCP-2241 为数不多未被终结的人形异常。似乎SCP-2241被用作活体武器来摧毁那些突然冒出来..."
+      },
+      {
+        "slug": "scp-2466",
+        "title": "SCP-2466 - 屠龙救城市",
+        "mention_count": 3,
+        "snippet": "...示它被派去协助围攻Ganzir了。显然他们遇到麻烦了。 SCP-2466 SCP-2466一直在用于强迫来自加利福尼亚州█████████的幸存者采取社会破..."
+      },
+      {
+        "slug": "scp-096",
+        "title": "SCP-096 - “羞涩”的人",
+        "mention_count": 2,
+        "snippet": "...生的事。 相关异常 基金会采取的行动 SCP-096 SCP-096 的脸部照片流传到了社交媒体平台上。在照片被撤下之前已造成了上百人的..."
+      },
+      {
+        "slug": "scp-1370",
+        "title": "SCP-1370 - 烦恼机器人",
+        "mention_count": 2,
+        "snippet": "...都行吧。 相关异常 基金会采取的行动 SCP-1370 电视服务暂时恢复。所有的频道都播送着 SCP-1370 的宣传演讲，絮叨着他要怎样..."
+      },
+      {
+        "slug": "scp-169",
+        "title": "SCP-169 - 利维坦",
+        "mention_count": 2,
+        "snippet": "...已造成了上百人的死亡。据我所知，这张照片还在继续流传。 SCP-169 一连串核炸药在 SCP-169 的内里及背部表面引爆，造成其在睡梦中的微微骚动。由..."
+      },
+      {
+        "slug": "scp-2000",
+        "title": "SCP-2000 - 机械降神",
+        "mention_count": 2,
+        "snippet": "...比较好。 相关异常 基金会采取的行动 SCP-2000 基金会故意引发黄石火山的爆发，以此摧毁SCP-2000。就目前而言，由玛娜慈善基金..."
+      },
+      {
+        "slug": "scp-2639",
+        "title": "SCP-2639 - 电子游戏暴力",
+        "mention_count": 2,
+        "snippet": "...候，它就崩溃变得无法使用了。猜测那里已不剩任何居民了。 SCP-2639 SCP-2639被派遣至幸存者社区与敌对基金会的群体设施以杀死所有在场的人。似乎他..."
+      },
+      {
+        "slug": "scp-3199",
+        "title": "SCP-3199 - 否决，人类",
+        "mention_count": 2,
+        "snippet": "...尽可能多地制造跟他妈终结者一样的东西，所以还挺有趣的。 SCP-3199 SCP-3199的蛋现已被几乎空投到任何地方。我相信你能想象到会发生什么事的。..."
+      },
+      {
+        "slug": "scp-4290",
+        "title": "SCP-4290 - 饥饿的子",
+        "mention_count": 2,
+        "snippet": "...1-4 相关异常 基金会采取的行动 SCP-4290 通过利用SCP-914强化过的SCP-008样品，基金会复活了SCP-4290的尸..."
+      },
+      {
+        "slug": "scp-008",
+        "title": "SCP-008 - 丧尸病毒",
+        "mention_count": 1,
+        "snippet": "...SCP-4290 通过利用SCP-914强化过的SCP-008样品，基金会复活了SCP-4290的尸体并将其释放。蛇之手的驭兽术士与其进行了交战，但是文..."
+      },
+      {
+        "slug": "scp-1048",
+        "title": "SCP-1048 - 泰迪熊建造者",
+        "mention_count": 1,
+        "snippet": "...絮叨着他要怎样统治世界什么的。这一条实际上还没那么糟。 SCP-1048 我不知道基金会起初是怎样抓到这东西的，但是直升机录像显示有一大群由 1048 制造..."
+      },
+      {
+        "slug": "scp-3078",
+        "title": "SCP-3078 - 认知危害垃圾帖",
+        "mention_count": 1,
+        "snippet": "...的表格。 相关异常 基金会采取的行动 SCP-3078 似乎破碎之神教会成功让某些地区的互联网恢复并运行了——只不过，基金会通过几乎所有可..."
+      },
+      {
+        "slug": "scp-3179",
+        "title": "SCP-3179 - 机神之种",
+        "mention_count": 1,
+        "snippet": "...3078的拷贝，很快就把它搞垮了。所以互联网又瘫痪了。 SCP-3179 在破碎之神教会开始重建之后，这个东西就被从收容中释放。在教会内部点燃了一场关于这玩..."
+      },
+      {
+        "slug": "scp-4666",
+        "title": "SCP-4666 - 圣诞魔人",
+        "mention_count": 1,
+        "snippet": "...出这个宇宙了，但看起来 那些家伙躲到了幕后去 。蠢货。 SCP-4666 基金会使用时间异常释放了它，所以现在理论上各地都是圣诞节了——哦，操他妈的。..."
+      },
+      {
+        "slug": "scp-662",
+        "title": "SCP-662 - 管家铃",
+        "mention_count": 1,
+        "snippet": "...。由此引起的地震与海啸摧毁了世界上极为大量的沿海城镇。 SCP-662 在二十四小时之内，一名外貌与 “Deeds 先生”一致的个体出现在数名国家主要首脑..."
+      },
+      {
+        "slug": "scp-682",
+        "title": "SCP-682 - 不灭孽蜥",
+        "mention_count": 1,
+        "snippet": "...碎之神教会已合力阻止了 SCP-610 的进一步扩散。 SCP-682 被释放。 我不理解为什么会发生这种事。 下载文件 0001..."
+      },
+      {
+        "slug": "scp-914",
+        "title": "SCP-914 - 万能转换机",
+        "mention_count": 1,
+        "snippet": "...基金会采取的行动 SCP-4290 通过利用SCP-914强化过的SCP-008样品，基金会复活了SCP-4290的尸体并将其释放。蛇之手的驭兽术士..."
+      }
+    ],
+    "referenced_by": []
+  },
+  "scp-666-and-a-half-j": {
+    "references": [
+      {
+        "slug": "scp-666",
+        "title": "SCP-666 - 灵魂归宿",
+        "mention_count": 25,
+        "snippet": "...PeppersGhost SCP-666½-J - 地狱烈焰 by PeppersGhost 作者..."
+      },
+      {
+        "slug": "scp-682",
+        "title": "SCP-682 - 不灭孽蜥",
+        "mention_count": 2,
+        "snippet": "...附录： 尽管被伦理委员会反对，一餐SCP-666½-J被喂给 SCP-682 。在被SCP-666½-J激怒到极致的时候，SCP-682朝空中举起爪子，尖叫着“犹格·..."
+      },
+      {
+        "slug": "scp-106",
+        "title": "SCP-106 - 恐怖老人",
+        "mention_count": 1,
+        "snippet": "...手部紧抓马桶导致的轻微擦伤。 大约15-20分钟后个体肠道经历和 SCP-106 同等级的收容状况（包括多得多的尖叫），个体经历短暂的RK级狂欢场景，感受到下部肌肉的松弛..."
+      }
+    ],
+    "referenced_by": []
+  },
+  "scp-682": {
+    "references": [
+      {
+        "slug": "scp-182",
+        "title": "SCP-182 - “骑士”",
+        "mention_count": 2,
+        "snippet": "...-682。目前仍待████████批准。 Gears博士建议使用 SCP-182 与SCP-682进行交流。 SCP-182 表示不情愿，称会尽可能避免进入SCP-682..."
+      },
+      {
+        "slug": "scp-409",
+        "title": "SCP-409 - 晶蔓",
+        "mention_count": 2,
+        "snippet": "...事件记录682-E18：█████博士尝试在SCP-682身上使用 SCP-409 。███将军、██████将军和██████████博士为观察者。 0400：开..."
+      },
+      {
+        "slug": "scp-079",
+        "title": "SCP-079 - 旧AI",
+        "mention_count": 1,
+        "snippet": "...682是一体型巨大、起源未知的爬行类生物。它表现出极高的智能，在它与 SCP-079 有限的接触时间内，观察到它们之间进行了非常复杂的交流。SCP-682表露出对所有生命的憎..."
+      },
+      {
+        "slug": "scp-689",
+        "title": "SCP-689 - 黑暗中的祟神",
+        "mention_count": 1,
+        "snippet": "...参见文件27b-6），███████博士和█████博士要求准许使用 SCP-689 来处决SCP-682。目前仍待████████批准。 Gears博士建议使用 SCP..."
+      }
+    ],
+    "referenced_by": [
+      {
+        "slug": "scp-999",
+        "title": "SCP-999 - 痒痒怪",
+        "mention_count": 19,
+        "snippet": "...附录 SCP-999-B： 以下是一则实验报告，实验希望通过让 SCP-682 与SCP-999接触来限制SCP-682的狂暴。 SCP-999被放入SCP-6..."
+      },
+      {
+        "slug": "scp-666-and-a-half-j",
+        "title": "SCP-666½-J - 地狱烈焰",
+        "mention_count": 2,
+        "snippet": "...附录： 尽管被伦理委员会反对，一餐SCP-666½-J被喂给 SCP-682 。在被SCP-666½-J激怒到极致的时候，SCP-682朝空中举起爪子，尖叫着“犹格·..."
+      },
+      {
+        "slug": "scp-5000",
+        "title": "SCP-5000 - 为什么？",
+        "mention_count": 1,
+        "snippet": "...碎之神教会已合力阻止了 SCP-610 的进一步扩散。 SCP-682 被释放。 我不理解为什么会发生这种事。 下载文件 0001..."
+      }
+    ]
+  },
+  "scp-999": {
+    "references": [
+      {
+        "slug": "scp-682",
+        "title": "SCP-682 - 不灭孽蜥",
+        "mention_count": 19,
+        "snippet": "...附录 SCP-999-B： 以下是一则实验报告，实验希望通过让 SCP-682 与SCP-999接触来限制SCP-682的狂暴。 SCP-999被放入SCP-6..."
+      }
+    ],
+    "referenced_by": []
+  },
+  "scp-cn-001": {
+    "references": [],
+    "referenced_by": [
+      {
+        "slug": "scp-cn-008",
+        "title": "SCP-CN-008 - 冠冕",
+        "mention_count": 1,
+        "snippet": "...為藍本，設計出長期收容SCP-CN-008的協議。O5-CN議會匯報 SCP-CN-001 執行者O5-9，以「大基金會帝國」名義與SCP-CN-008-2建立宗主關係，O5-9命..."
+      }
+    ]
+  },
+  "scp-cn-005": {
+    "references": [],
+    "referenced_by": [
+      {
+        "slug": "scp-cn-024",
+        "title": "SCP-CN-024 - 讪鸦",
+        "mention_count": 1,
+        "snippet": "...事件概况： 1999年12月27日于Site-CN-██发生了一起由 SCP-CN-005 失效所引起的大型火灾，在本次火灾中共有█名研究员卷入其中，在SCP-CN-024事件被注..."
+      }
+    ]
+  },
+  "scp-cn-008": {
+    "references": [
+      {
+        "slug": "scp-cn-001",
+        "title": "SCP-CN-001 - 等待解密[已锁]",
+        "mention_count": 1,
+        "snippet": "...為藍本，設計出長期收容SCP-CN-008的協議。O5-CN議會匯報 SCP-CN-001 執行者O5-9，以「大基金會帝國」名義與SCP-CN-008-2建立宗主關係，O5-9命..."
+      }
+    ],
+    "referenced_by": []
+  },
+  "scp-cn-012": {
+    "references": [
+      {
+        "slug": "scp-cn-033",
+        "title": "SCP-CN-033 - 悲喜皮影戏",
+        "mention_count": 4,
+        "snippet": "...2-1-453似乎只是一个普通的戏剧广告，但是“解压”和宣传画中疑似 SCP-CN-033 的物体引起了基金会的注意，猜测被证明是正确的。 实验记录： D级人员D-8718..."
+      },
+      {
+        "slug": "scp-cn-194",
+        "title": "SCP-CN-194 - 极端保险措施",
+        "mention_count": 1,
+        "snippet": "...后，电话被切断，Site-12的安保录像显示Soc研究员一直在整理关于SCP-CN-194的档案并且没有离开办公室。 生成时间： ██/██/2015 编号： SCP-C..."
+      }
+    ],
+    "referenced_by": []
+  },
+  "scp-cn-014": {
+    "references": [
+      {
+        "slug": "scp-cn-067",
+        "title": "SCP-CN-067 - 盎蛊人间",
+        "mention_count": 3,
+        "snippet": "...杀害事件”对外掩盖。由于“Zevh”，“知更鸟”，“异虫”等曾出现于 SCP-CN-067 的信息亦在SCP-CN-014中被直接或是间接提及，两者被推定存在关联，目前对“Zevh..."
+      }
+    ],
+    "referenced_by": []
+  },
+  "scp-cn-018": {
+    "references": [
+      {
+        "slug": "scp-018",
+        "title": "SCP-018 - 弹力球",
+        "mention_count": 1,
+        "snippet": "...时也听到了某一个体（事后被确认为Dr.盘█）一直重复使用脏话发泄情绪。SCP-018-1个体在Site-CN-21女性浴室中巡航██分钟后消失在视野里面，期间共造成17处结构..."
+      }
+    ],
+    "referenced_by": []
+  },
+  "scp-cn-019": {
+    "references": [],
+    "referenced_by": [
+      {
+        "slug": "scp-cn-029",
+        "title": "SCP-CN-029 - 衣冠禽兽反制实体",
+        "mention_count": 1,
+        "snippet": "...，基金会应对与项目引发事件类似的事件密切留意。 项目遭收容后，自 SCP-CN-019 收容过程中记录到久未更新的环保公益组织论坛内出现了一个新讨论贴，该贴对此公益组织近段时间..."
+      }
+    ]
+  },
+  "scp-cn-024": {
+    "references": [
+      {
+        "slug": "scp-cn-046",
+        "title": "SCP-CN-046 - 为“自由”而战",
+        "mention_count": 2,
+        "snippet": "...市 事件概况： 于2001年8月15日广东省-佛山市出现了一起 SCP-CN-046 异常效应的传播事件,在基金会能够介入时，项目的异常影响已进入了次级影响阶段，这导致了该地..."
+      },
+      {
+        "slug": "scp-cn-005",
+        "title": "SCP-CN-005 - 无头案",
+        "mention_count": 1,
+        "snippet": "...事件概况： 1999年12月27日于Site-CN-██发生了一起由 SCP-CN-005 失效所引起的大型火灾，在本次火灾中共有█名研究员卷入其中，在SCP-CN-024事件被注..."
+      }
+    ],
+    "referenced_by": []
+  },
+  "scp-cn-029": {
+    "references": [
+      {
+        "slug": "scp-cn-019",
+        "title": "SCP-CN-019 - 犯罪分子的惊喜口香糖",
+        "mention_count": 1,
+        "snippet": "...，基金会应对与项目引发事件类似的事件密切留意。 项目遭收容后，自 SCP-CN-019 收容过程中记录到久未更新的环保公益组织论坛内出现了一个新讨论贴，该贴对此公益组织近段时间..."
+      }
+    ],
+    "referenced_by": []
+  },
+  "scp-cn-1000": {
+    "references": [
+      {
+        "slug": "scp-008",
+        "title": "SCP-008 - 丧尸病毒",
+        "mention_count": 2,
+        "snippet": "...信息 配图来源： SCP-914 ， SCP-008 ， unsplash 格式来源： SCP格式资源 ，tab格式修改自 芝加哥鬼..."
+      },
+      {
+        "slug": "scp-173",
+        "title": "SCP-173 - 雕像 - 最初之作",
+        "mention_count": 1,
+        "snippet": "...skip打过交道。而上面的SAP列表中有不少熟面孔。SAP-001对应SCP-173，SAP-090对应SCP-008，069对应914。另外注意一下，文档的背景除了基金会，..."
+      },
+      {
+        "slug": "scp-914",
+        "title": "SCP-914 - 万能转换机",
+        "mention_count": 1,
+        "snippet": "...著作信息 配图来源： SCP-914 ， SCP-008 ， unsplash 格式来源： SCP格式资源 ，tab..."
+      }
+    ],
+    "referenced_by": []
+  }
+}

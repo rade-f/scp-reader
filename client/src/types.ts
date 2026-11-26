@@ -1,3 +1,15 @@
+export interface ScpRelationItem {
+  slug: string;
+  title: string;
+  mention_count: number;
+  snippet: string;
+}
+
+export interface DocumentRelations {
+  references: ScpRelationItem[];
+  referenced_by: ScpRelationItem[];
+}
+
 export interface Article {
   slug: string;
   title: string;
@@ -8,6 +20,7 @@ export interface Article {
   styles: string[];
   tags: string[];
   raw_en_content?: string | null;
+  relations?: DocumentRelations;
   created_at?: string;
   updated_at?: string;
 }

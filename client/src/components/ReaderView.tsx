@@ -7,9 +7,13 @@ import {
   Sparkles,
   Shield,
   Star,
-  ExternalLink
+  ExternalLink,
+  Network,
+  ArrowUpRight,
+  ArrowRight,
+  GitPullRequest
 } from "lucide-react";
-import type { Article } from "../types";
+import type { Article, DocumentRelations, ScpRelationItem } from "../types";
 
 interface ReaderViewProps {
   slug: string;
@@ -17,14 +21,63 @@ interface ReaderViewProps {
   onSelectDoc?: (slug: string) => void;
 }
 
-export const ReaderView: React.FC<ReaderViewProps> = ({ slug, onBack }) => {
+export const ReaderView: React.FC<ReaderViewProps> = ({ slug, onBack, onSelectDoc }) => {
   const [doc, setDoc] = useState<Article | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [isBookmarked, setIsBookmarked] = useState(false);
   const [iframeHeight, setIframeHeight] = useState(800);
   const [readerTheme, setReaderTheme] = useState<"light" | "sepia" | "dark" | "oled">("light");
+  const [relations, setRelations] = useState<DocumentRelations | null>(null);
+  const [activeRelationTab, setActiveRelationTab] = useState<"references" | "referenced_by">("references");
   const iframeRef = useRef<HTMLIFrameElement>(null);
+
+  // Fallback local relation extractor for dynamic or offline articles
+  const extractLocalRelations = (html: string, currentSlug: string): DocumentRelations => {
+    const strippedHtml = html
+      .replace(/<div class=['"]footer-wikiwalk-nav['"][\s\S]*?<\/div>/gi, " ")
+      .replace(/<div class=['"]licensebox['"][\s\S]*?<\/div>/gi, " ")
+      .replace(/<script[\s\S]*?<\/script>/gi, " ")
+      .replace(/<style[\s\S]*?<\/style>/gi, " ");
+
+    const cleanText = strippedHtml.replace(/<[^>]+>/g, " ");
+    const regex = /\bSCP-(?:CN-)?(?:\d+|[A-Z0-9]+(?:-J|-EX|-ARC)?)\b/gi;
+
+    const counts = new Map<string, number>();
+    const snippets = new Map<string, string>();
+
+    let match: RegExpExecArray | null;
+    while ((match = regex.exec(cleanText)) !== null) {
+      const rawTarget = match[0];
+      const targetSlug = rawTarget.toLowerCase();
+      if (targetSlug === currentSlug.toLowerCase()) continue;
+
+      counts.set(targetSlug, (counts.get(targetSlug) || 0) + 1);
+
+      if (!snippets.has(targetSlug)) {
+        const idx = match.index;
+        const start = Math.max(0, idx - 35);
+        const end = Math.min(cleanText.length, idx + match[0].length + 45);
+        let snippet = cleanText.substring(start, end).replace(/\s+/g, " ").trim();
+        if (start > 0) snippet = "..." + snippet;
+        if (end < cleanText.length) snippet = snippet + "...";
+        snippets.set(targetSlug, snippet);
+      }
+    }
+
+    const references: ScpRelationItem[] = [];
+    for (const [targetSlug, count] of counts.entries()) {
+      references.push({
+        slug: targetSlug,
+        title: targetSlug.toUpperCase(),
+        mention_count: count,
+        snippet: snippets.get(targetSlug) || ""
+      });
+    }
+
+    references.sort((a, b) => b.mention_count - a.mention_count);
+    return { references, referenced_by: [] };
+  };
 
   // Fetch document
   const fetchDoc = async (forceRefresh = false) => {
@@ -105,6 +158,37 @@ export const ReaderView: React.FC<ReaderViewProps> = ({ slug, onBack }) => {
 
       setDoc(data);
 
+      // Load relations: either from API, or from offline relations.json, or extracted on-the-fly
+      if (data.relations) {
+        setRelations(data.relations);
+        if (data.relations.references.length === 0 && data.relations.referenced_by.length > 0) {
+          setActiveRelationTab("referenced_by");
+        } else {
+          setActiveRelationTab("references");
+        }
+      } else {
+        try {
+          const relRes = await fetch(`./offline_data/relations.json`);
+          if (relRes.ok) {
+            const relMap = await relRes.json();
+            if (relMap[slug]) {
+              setRelations(relMap[slug]);
+              if (relMap[slug].references.length === 0 && relMap[slug].referenced_by.length > 0) {
+                setActiveRelationTab("referenced_by");
+              } else {
+                setActiveRelationTab("references");
+              }
+            } else {
+              setRelations(extractLocalRelations(data.html_content, slug));
+            }
+          } else {
+            setRelations(extractLocalRelations(data.html_content, slug));
+          }
+        } catch {
+          setRelations(extractLocalRelations(data.html_content, slug));
+        }
+      }
+
       // Check bookmark status from localStorage as fallback
       try {
         const bResp = await fetch("http://localhost:3001/api/user/bookmarks");
@@ -128,7 +212,7 @@ export const ReaderView: React.FC<ReaderViewProps> = ({ slug, onBack }) => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [slug]);
 
-  // Listen to iframe auto-resize message
+  // Listen to iframe messages: auto-resize and inline link navigation
   useEffect(() => {
     const handleMessage = (e: MessageEvent) => {
       if (e.data && e.data.type === "SCP_RESIZE" && typeof e.data.height === "number") {
@@ -138,11 +222,17 @@ export const ReaderView: React.FC<ReaderViewProps> = ({ slug, onBack }) => {
           if (Math.abs(prev - rawHeight) < 6) return prev;
           return Math.max(rawHeight + 16, 400);
         });
+      } else if (e.data && e.data.type === "SCP_NAVIGATE" && typeof e.data.slug === "string") {
+        if (onSelectDoc) {
+          onSelectDoc(e.data.slug);
+        } else {
+          window.location.hash = `#/read/${e.data.slug}`;
+        }
       }
     };
     window.addEventListener("message", handleMessage);
     return () => window.removeEventListener("message", handleMessage);
-  }, []);
+  }, [onSelectDoc]);
 
   // Toggle Bookmark
   const toggleBookmark = async () => {
@@ -206,6 +296,22 @@ export const ReaderView: React.FC<ReaderViewProps> = ({ slug, onBack }) => {
       #page-content { padding: 8px 0; overflow-x: hidden; height: auto !important; }
       img { max-width: 100% !important; height: auto !important; }
       .collapsible-block-unfolded { transition: all 0.2s ease-in-out; }
+      .scp-relation-link {
+          color: #0071e3 !important;
+          font-weight: 600 !important;
+          text-decoration: none !important;
+          background: rgba(0, 113, 227, 0.08);
+          border-bottom: 1.5px solid rgba(0, 113, 227, 0.4);
+          padding: 1px 4px;
+          border-radius: 4px;
+          transition: all 0.15s ease-in-out;
+          cursor: pointer;
+      }
+      .scp-relation-link:hover {
+          background: rgba(0, 113, 227, 0.22);
+          border-bottom-color: #0071e3;
+          color: #0077ed !important;
+      }
     </style>
 </head>
 <body>
@@ -225,6 +331,94 @@ export const ReaderView: React.FC<ReaderViewProps> = ({ slug, onBack }) => {
                 window.parent.postMessage({ type: 'SCP_RESIZE', height: h }, '*');
             }
         }
+
+        // Auto-linkify SCP mentions in text nodes (excluding tags, links, scripts, styles)
+        function linkifyScpReferences() {
+            if (!pageContent) return;
+
+            var walker = document.createTreeWalker(
+                pageContent,
+                NodeFilter.SHOW_TEXT,
+                {
+                    acceptNode: function(node) {
+                        if (!node.nodeValue || !node.nodeValue.match(/\\bSCP-(?:CN-)?(?:\\d+|[A-Z0-9]+(?:-J|-EX|-ARC)?)\\b/i)) {
+                            return NodeFilter.FILTER_REJECT;
+                        }
+                        var parent = node.parentElement;
+                        if (!parent) return NodeFilter.FILTER_REJECT;
+                        var tag = parent.tagName.toUpperCase();
+                        if (tag === 'A' || tag === 'SCRIPT' || tag === 'STYLE' || tag === 'BUTTON' || tag === 'INPUT' || tag === 'TEXTAREA') {
+                            return NodeFilter.FILTER_REJECT;
+                        }
+                        if (parent.closest('.footer-wikiwalk-nav') || parent.closest('.licensebox')) {
+                            return NodeFilter.FILTER_REJECT;
+                        }
+                        return NodeFilter.FILTER_ACCEPT;
+                    }
+                }
+            );
+
+            var textNodes = [];
+            while (walker.nextNode()) {
+                textNodes.push(walker.currentNode);
+            }
+
+            var regex = /\\b(SCP-(?:CN-)?(?:\\d+|[A-Z0-9]+(?:-J|-EX|-ARC)?))\\b/gi;
+            textNodes.forEach(function(node) {
+                var text = node.nodeValue;
+                if (!text) return;
+                var parts = [];
+                var lastIndex = 0;
+                var m;
+                while ((m = regex.exec(text)) !== null) {
+                    var fullMatch = m[0];
+                    var targetSlug = fullMatch.toLowerCase();
+                    if (targetSlug === "${slug.toLowerCase()}") continue;
+
+                    if (m.index > lastIndex) {
+                        parts.push(document.createTextNode(text.substring(lastIndex, m.index)));
+                    }
+
+                    var a = document.createElement('a');
+                    a.href = '#/read/' + targetSlug;
+                    a.setAttribute('data-scp', targetSlug);
+                    a.className = 'scp-relation-link';
+                    a.textContent = fullMatch;
+                    a.title = '点击跳转至 ' + fullMatch + ' 档案';
+                    parts.push(a);
+
+                    lastIndex = regex.lastIndex;
+                }
+
+                if (parts.length > 0) {
+                    if (lastIndex < text.length) {
+                        parts.push(document.createTextNode(text.substring(lastIndex)));
+                    }
+                    var frag = document.createDocumentFragment();
+                    parts.forEach(function(p) { frag.appendChild(p); });
+                    if (node.parentNode) {
+                        node.parentNode.replaceChild(frag, node);
+                    }
+                }
+            });
+        }
+
+        try {
+            linkifyScpReferences();
+        } catch (e) {
+            console.warn('Linkify error:', e);
+        }
+
+        document.addEventListener('click', function(e) {
+            var link = e.target.closest('a[data-scp], a.scp-relation-link');
+            if (link) {
+                e.preventDefault();
+                var target = link.getAttribute('data-scp');
+                if (target) {
+                    window.parent.postMessage({ type: 'SCP_NAVIGATE', slug: target }, '*');
+                }
+            }
+        });
 
         document.querySelectorAll('.collapsible-block').forEach(function(block) {
             var folded = block.querySelector('.collapsible-block-folded');
@@ -368,6 +562,108 @@ export const ReaderView: React.FC<ReaderViewProps> = ({ slug, onBack }) => {
               filter: readerTheme === "oled" || readerTheme === "dark" ? "none" : undefined
             }}
           />
+
+          {/* Cross-Document Relation Knowledge Graph Card */}
+          {relations && (relations.references.length > 0 || relations.referenced_by.length > 0) && (
+            <div className="mt-10 pt-8 border-t border-black/10 dark:border-white/10">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-5">
+                <div className="flex items-center gap-2.5">
+                  <div className="w-8 h-8 rounded-xl bg-apple-blue/10 dark:bg-apple-blue/20 text-apple-blue flex items-center justify-center shrink-0">
+                    <Network className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-base text-neutral-900 dark:text-neutral-100 flex items-center gap-2">
+                      关联收容档案网络
+                      <span className="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-apple-blue/10 text-apple-blue dark:bg-apple-blue/20">
+                        {relations.references.length + relations.referenced_by.length} 项关联
+                      </span>
+                    </h3>
+                    <p className="text-xs text-neutral-400">
+                      智能检索全文交互实验、跨项目测试与收容协同记录
+                    </p>
+                  </div>
+                </div>
+
+                {/* Segmented Switcher Pill */}
+                <div className="flex items-center p-1 bg-neutral-200/60 dark:bg-neutral-800/80 rounded-full self-start sm:self-auto border border-black/5 dark:border-white/5 shrink-0">
+                  <button
+                    onClick={() => setActiveRelationTab("references")}
+                    className={`flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium cursor-pointer transition-all ${
+                      activeRelationTab === "references"
+                        ? "bg-white dark:bg-apple-darkElevated text-neutral-900 dark:text-white shadow-sm font-semibold"
+                        : "text-neutral-500 hover:text-neutral-900 dark:hover:text-white"
+                    }`}
+                  >
+                    <ArrowUpRight className="w-3.5 h-3.5 text-blue-500" />
+                    <span>本文提及 ({relations.references.length})</span>
+                  </button>
+                  <button
+                    onClick={() => setActiveRelationTab("referenced_by")}
+                    className={`flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium cursor-pointer transition-all ${
+                      activeRelationTab === "referenced_by"
+                        ? "bg-white dark:bg-apple-darkElevated text-neutral-900 dark:text-white shadow-sm font-semibold"
+                        : "text-neutral-500 hover:text-neutral-900 dark:hover:text-white"
+                    }`}
+                  >
+                    <GitPullRequest className="w-3.5 h-3.5 text-amber-500" />
+                    <span>被提及于 ({relations.referenced_by.length})</span>
+                  </button>
+                </div>
+              </div>
+
+              {/* Items Grid */}
+              {(() => {
+                const currentList = activeRelationTab === "references" ? relations.references : relations.referenced_by;
+                if (currentList.length === 0) {
+                  return (
+                    <div className="py-8 text-center text-xs text-neutral-400 bg-black/5 dark:bg-white/5 rounded-2xl">
+                      {activeRelationTab === "references"
+                        ? "本文正文未提及其他收容项目"
+                        : "暂无其他已知收容档案交叉引用本篇记录"}
+                    </div>
+                  );
+                }
+                return (
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    {currentList.map((item) => (
+                      <button
+                        key={item.slug}
+                        onClick={() => {
+                          if (onSelectDoc) onSelectDoc(item.slug);
+                          else window.location.hash = `#/read/${item.slug}`;
+                        }}
+                        className="p-4 rounded-2xl bg-white/70 dark:bg-neutral-800/60 border border-apple-border dark:border-apple-darkBorder hover:border-apple-blue/40 hover:shadow-apple-hover hover:-translate-y-0.5 transition-all text-left flex flex-col justify-between group cursor-pointer"
+                      >
+                        <div>
+                          <div className="flex items-center justify-between mb-1.5">
+                            <span className="text-xs font-bold text-apple-blue uppercase tracking-wider">
+                              {item.slug.toUpperCase()}
+                            </span>
+                            <span className="text-[10px] font-medium px-2 py-0.5 rounded-full bg-apple-blue/10 text-apple-blue dark:bg-apple-blue/20">
+                              提及 {item.mention_count} 次
+                            </span>
+                          </div>
+                          <div className="font-semibold text-sm text-neutral-800 dark:text-neutral-100 group-hover:text-apple-blue transition-colors mb-2">
+                            {item.title}
+                          </div>
+                          {item.snippet && (
+                            <p className="text-xs text-neutral-500 dark:text-neutral-400 line-clamp-2 leading-relaxed bg-black/5 dark:bg-white/5 p-2 rounded-xl italic">
+                              “{item.snippet}”
+                            </p>
+                          )}
+                        </div>
+
+                        <div className="flex items-center justify-end mt-3 text-xs font-medium text-apple-blue group-hover:translate-x-1 transition-transform">
+                          <span>立即查阅关联档案</span>
+                          <ArrowRight className="w-3.5 h-3.5 ml-1" />
+                        </div>
+                      </button>
+                    ))}
+                  </div>
+                );
+              })()}
+            </div>
+          )}
         </div>
       </div>
 
